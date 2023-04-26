@@ -5,8 +5,8 @@ Currently unfinished project. Created with a Flask backend and Vite frontend. Yo
 ### Created with [python-mlb-statsapi](https://github.com/zero-sum-seattle/python-mlb-statsapi)
 
 # Plans:
-- Allow user to keep track of score.
-- End game when user guesses wrong
+- [x] Allow user to keep track of score.
+- [x] End game when user guesses wrong
 - Add styling details related to each player
 - Allow users to initialize the game with unique parameter: eg. year of stats, hitters/pitchers
 - Host project

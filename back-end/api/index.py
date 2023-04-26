@@ -2,12 +2,14 @@ from flask import Flask, request
 import mlbstatsapi
 import random
 from flask_cors import CORS, cross_origin
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 mlb = mlbstatsapi.Mlb()
 
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 @app.route("/game/<player_type>/<stat_to_compare>", methods=["GET"])
 @cross_origin()
@@ -47,3 +49,7 @@ def index(player_type, stat_to_compare):
                           {"player": find_players[1], "stats": get_player_stats(find_players[1].id)}]
     
     return players_to_compare
+
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)

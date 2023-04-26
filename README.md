@@ -4,6 +4,12 @@ Currently unfinished project. Created with a Flask backend and Vite frontend. Yo
 
 ### Created with [python-mlb-statsapi](https://github.com/zero-sum-seattle/python-mlb-statsapi)
 
+Front End:
+`npm run dev`
+
+Back End: 
+`python3 -m flask .\api\index.py run`
+
 # Plans:
 - [x] Allow user to keep track of score.
 - [x] End game when user guesses wrong

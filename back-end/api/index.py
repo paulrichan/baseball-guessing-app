@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import mlbstatsapi
 import random
 from flask_cors import CORS, cross_origin
@@ -9,9 +9,12 @@ app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route("/game")
+@app.route("/game/<player_type>/<stat_to_compare>", methods=["GET"])
 @cross_origin()
-def index():
+def index(player_type, stat_to_compare):
+    args = request.args.to_dict()
+    player_type = f'{player_type}'
+    
     # TODO: route params: season
     api_all_plyrs = mlb.get_people(1, season=2023)
     
@@ -21,7 +24,8 @@ def index():
     
     def get_random_player():
         player = random.choice(api_all_plyrs)
-        if is_pitcher(player) or not player.active: 
+        # NOTE: this might be overkill but better safe than sorry?
+        if player_type == 'hitting' and is_pitcher(player) or not player.active or player_type == 'pitching' and not is_pitcher(player): 
             return get_random_player()
         return player
     
@@ -31,13 +35,15 @@ def index():
                     player_2 if player_1.id != player_2.id else get_random_player()]
     
     # get player stats and format new array
-    # TODO: provide route param for hitting or pitching
-    groups = ['hitting']
-    stats = ['season']
-    player_1_stats = mlb.get_player_stats(find_players[0].id, stats, groups, season=2023)['hitting']['season'].splits[0].stat
-    player_2_stats = mlb.get_player_stats(find_players[1].id, stats, groups, season=2023)['hitting']['season'].splits[0].stat
-    # print(player_1_stats['season'].splits[0].stat)
-    players_to_compare = [{"player": find_players[0], "stats": player_1_stats}, 
-                          {"player": find_players[1], "stats": player_2_stats}]
+    def get_player_stats(player_id):
+        groups = [player_type]
+        stats = ['season']
+        player_stats = mlb.get_player_stats(player_id, stats, groups, season=2023)[player_type]['season'].splits[0].stat
+        if not player_stats:
+            return get_player_stats(player_id)
+        return player_stats
+   
+    players_to_compare = [{"player": find_players[0], "stats": get_player_stats(find_players[0].id)}, 
+                          {"player": find_players[1], "stats": get_player_stats(find_players[1].id)}]
     
     return players_to_compare

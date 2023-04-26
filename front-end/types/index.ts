@@ -1,4 +1,5 @@
 export interface Player {
+   [key: string]: any
    active: boolean
    batside: BatSide
    birthcity: string
@@ -72,6 +73,7 @@ export interface PrimaryPosition {
 }
 
 export interface Stats {
+   [key: string]: any
    airouts: number
    atbats: number
    atbatsperhomerun: string

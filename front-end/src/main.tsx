@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       // ],
    },
    {
-      path: '/game',
+      path: '/game/:player_type/:stat_to_compare',
       loader: gameLoader,
       element: <Game />,
    },

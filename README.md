@@ -7,6 +7,6 @@ Currently unfinished project. Created with a Flask backend and Vite frontend. Yo
 # Plans:
 - [x] Allow user to keep track of score.
 - [x] End game when user guesses wrong
-- [] Add styling details related to each player
-- [] Allow users to initialize the game with unique parameter: eg. year of stats, hitters/pitchers
-- [] Host project
+- [ ] Add styling details related to each player
+- [ ] Allow users to initialize the game with unique parameter: eg. year of stats, hitters/pitchers
+- [ ] Host project

@@ -11,6 +11,10 @@ CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
+@app.route('/')
+def dead_route():
+    return "Hello, world!"
+
 @app.route("/game/<player_type>/<stat_to_compare>", methods=["GET"])
 @cross_origin()
 def index(player_type, stat_to_compare):
@@ -52,4 +56,5 @@ def index(player_type, stat_to_compare):
 
 if __name__ == "__main__":
     from waitress import serve
-    serve(app, host="0.0.0.0", port=5000)
+    serve(app, host='0.0.0.0', port=3001)
+    # app.run()

@@ -1,25 +1,23 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { Player, Stats } from '../../types'
+import { useParams } from 'react-router-dom'
 
-export default function useGameData() {
-   const [data, setData] = useState([])
-   const [isLoading, setIsLoading] = useState(true)
+export default function useGameData(loaderData: Array<{ player: Player; stats: Stats }>) {
+   const params = useParams()
+   const { player_type, stat_to_compare } = params
+   const [data, setData] = useState(loaderData)
+   const [isLoading, setIsLoading] = useState(false)
 
-   async function fetchData() {
+   async function fetchNewData() {
+      const fetchString = `http://127.0.0.1:5000/game/${player_type}/${stat_to_compare}`
+      setIsLoading(true)
       await axios
-         .get('127.0.0.1:5000/game')
+         .get(fetchString)
          .then(({ data }) => setData(data))
          .catch((err) => console.error(err))
          .finally(() => setIsLoading(false))
    }
 
-   function refetch() {
-      setIsLoading(true)
-   }
-
-   useEffect(() => {
-      if (isLoading) fetchData()
-   }, [isLoading])
-
-   return { data, isLoading, refetch }
+   return { data, isLoading, fetchNewData, setIsLoading }
 }

@@ -57,5 +57,5 @@ def index(player_type, stat_to_compare):
 
 if __name__ == "__main__":
     from waitress import serve
-    serve(app, host='0.0.0.0', port=os.environ["PORT"], debug=True)
+    serve(app, host='0.0.0.0', port=os.environ["PORT"])
     # app.run()

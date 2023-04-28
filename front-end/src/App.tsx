@@ -7,7 +7,7 @@ import { pitcherOptions } from '../utils/pitcherOptions.ts'
 function App() {
    const [playerType, setPlayerType] = useState('pitching')
    const availableOptions = playerType === 'hitting' ? hitterOptions : pitcherOptions
-   const [statToCompare, setStatToCompare] = useState(Object.values(availableOptions)[1])
+   const [statToCompare, setStatToCompare] = useState(Object.keys(availableOptions)[0])
 
    const playerOptions = Object.entries(availableOptions).map(([value, name], idx) => (
       <option key={idx} value={value}>

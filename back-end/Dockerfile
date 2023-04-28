@@ -8,6 +8,9 @@ COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 COPY . .
-# os.system(r'python3 -m flask --app .\index.py run --debug')
+
+# Development 
 # CMD ["python3", "-m", "flask", "--app", "index.py", "run", "--debug", "--host=0.0.0.0"]
+
+# Production
 CMD ["python3", "index.py"]

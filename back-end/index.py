@@ -3,6 +3,7 @@ import mlbstatsapi
 import random
 from flask_cors import CORS, cross_origin
 from werkzeug.middleware.proxy_fix import ProxyFix
+import os
 
 mlb = mlbstatsapi.Mlb()
 
@@ -56,5 +57,5 @@ def index(player_type, stat_to_compare):
 
 if __name__ == "__main__":
     from waitress import serve
-    serve(app, host='0.0.0.0', port=3001)
+    serve(app, host='0.0.0.0', port=os.environ["PORT"], debug=True)
     # app.run()

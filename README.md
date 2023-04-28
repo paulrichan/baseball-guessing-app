@@ -21,3 +21,4 @@ Back End:
 - [ ] Add styling details related to each player
 - [x] Allow users to initialize the game with unique parameter: eg. year of stats, hitters/pitchers
 - [x] Host project
+- [ ] Provide better mobile support

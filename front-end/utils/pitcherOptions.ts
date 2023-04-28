@@ -1,5 +1,4 @@
 export const pitcherOptions = {
-   airouts: 'Air Outs',
    atbats: 'At Bats',
    avg: 'Batting Average',
    balks: 'Balks',

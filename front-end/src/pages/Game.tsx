@@ -82,7 +82,7 @@ function Game() {
             : '<'
 
       return (
-         <div key={idx} className='alert alert-success flex-row md:flex-col'>
+         <div key={idx} className='alert alert-success'>
             <div className='flex flex-col'>
                <span className='font-bold'>{player1.lastname}</span>
                <span>
@@ -102,8 +102,6 @@ function Game() {
 
    return (
       <>
-         {/* Notifications */}
-         <div className='toast toast-center md:toast-end z-30'>{notifications}</div>
          <PageLayout>
             <div className='h-full flex flex-col md:flex-row w-full relative'>
                <div className='w-full absolute py-5'>
@@ -113,6 +111,9 @@ function Game() {
                      <div className='bg-zinc-500 absolute h-full top-0 w-full blur-xl -z-10' />
                   </div>
                </div>
+
+               {/* Notifications */}
+               <div className='toast toast-center md:toast-end z-30'>{notifications}</div>
 
                {/* Modal */}
                <input type='checkbox' id='my-modal' className='modal-toggle' ref={lostModalRef} />

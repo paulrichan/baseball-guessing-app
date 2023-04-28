@@ -10,7 +10,7 @@ export default function useGameData(loaderData: Array<{ player: Player; stats: S
    const [isLoading, setIsLoading] = useState(false)
 
    async function fetchNewData() {
-      const fetchString = `http://127.0.0.1:5000/game/${player_type}/${stat_to_compare}`
+      const fetchString = `${import.meta.env.VITE_API_URL}/game/${player_type}/${stat_to_compare}`
       setIsLoading(true)
       await axios
          .get(fetchString)

@@ -1,6 +1,6 @@
 # MLB Stats Guessing App
 
-Currently unfinished project. Created with a Flask backend and Vite frontend. You are more than welcome to spin it up locally.
+Currently unfinished project. Created with a Flask backend and Vite frontend. You are more than welcome to spin it up locally or you can [visit the hosted app here](https://baseball-guessing-app.vercel.app/).
 
 ### Created with [python-mlb-statsapi](https://github.com/zero-sum-seattle/python-mlb-statsapi)
 
@@ -20,4 +20,5 @@ Back End:
 - [x] End game when user guesses wrong
 - [ ] Add styling details related to each player
 - [x] Allow users to initialize the game with unique parameter: eg. year of stats, hitters/pitchers
-- [ ] Host project
+- [x] Host project
+- [ ] Provide better mobile support

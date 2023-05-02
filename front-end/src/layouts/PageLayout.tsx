@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 function PageLayout({ children }: any) {
    return (
       <div className='h-screen flex flex-col items-center justify-center'>
-         <div className='navbar bg-base-300'>
+         <div className='navbar bg-base-300 z-10'>
             <div className='flex-1'>
                <Link to='/' className='btn btn-ghost'>
-                  MLB Stats Game
+                  Baseball stats game
                </Link>
             </div>
             <div className='flex-none'>

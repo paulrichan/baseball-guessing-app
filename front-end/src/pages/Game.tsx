@@ -103,7 +103,9 @@ function Game() {
    return (
       <>
          <PageLayout>
-            <div className='h-full flex flex-col md:flex-row w-full relative'>
+            <div className='h-full w-full relative'>
+               <div className='h-full absolute bg-neutral-900/70 blur-md w-full z-[-1] bg-[url(/stadium2-ai.jpg)] opacity-30'></div>
+
                <div className='w-full absolute py-5'>
                   <div className='w-fit mx-auto relative'>
                      <h3 className='text-center text-xl font-bold'>Who has more?</h3>
@@ -113,7 +115,7 @@ function Game() {
                </div>
 
                {/* Notifications */}
-               <div className='toast toast-center md:toast-end z-30'>{notifications}</div>
+               <div className='toast toast-center md:toast-end z-30 hidden md:flex'>{notifications}</div>
 
                {/* Modal */}
                <input type='checkbox' id='my-modal' className='modal-toggle' ref={lostModalRef} />
@@ -161,12 +163,15 @@ function Game() {
                      Loading...
                   </div>
                )}
-               <PlayerContainer onClick={() => handlePlayerClick('player1')} playerData={player1.data} />
-               <div className='divider divider-vertical md:divider-horizontal'>
-                  <span className='opacity-50 hidden md:block'>👈 or 👉</span>
-                  <span className='opacity-50 md:hidden'>☝️ or 👇</span>
+
+               <div className='flex flex-col md:flex-row h-5/6 md:h-full w-full z-10'>
+                  <PlayerContainer onClick={() => handlePlayerClick('player1')} playerData={player1.data} />
+                  <div className='divider divider-vertical md:divider-horizontal'>
+                     <span className='opacity-50 hidden md:block'>👈 or 👉</span>
+                     <span className='opacity-50 md:hidden'>☝️ or 👇</span>
+                  </div>
+                  <PlayerContainer onClick={() => handlePlayerClick('player2')} playerData={player2.data} />
                </div>
-               <PlayerContainer onClick={() => handlePlayerClick('player2')} playerData={player2.data} />
 
                <div className='absolute bottom-5 w-full'>
                   <button

@@ -17,43 +17,53 @@ function App() {
 
    return (
       <PageLayout>
-         <div className='flex flex-col justify-center items-center h-full gap-5'>
-            <h1 className='font-bold text-3xl text-center'>Ready to test your baseball knowledge?</h1>
+         <div className='flex flex-col relative justify-evenly items-center h-full gap-5 bg-[url(/stadium-ai.jpg)]'>
+            <div className='h-full absolute bg-neutral-900/70 backdrop-blur-md w-full z-0'></div>
 
-            <div className='form-control gap-5'>
-               <div className='flex flex-col gap-2'>
-                  <div className='flex items-center'>
-                     <input
-                        type='radio'
-                        name='radio-3'
-                        className='radio radio-secondary'
-                        onChange={() => setPlayerType('pitching')}
-                        checked={playerType === 'pitching'}
-                     />
-                     <span className='ml-3'>Pitching</span>
-                  </div>
-                  <div className='flex items-center'>
-                     <input
-                        type='radio'
-                        name='radio-3'
-                        className='radio radio-secondary'
-                        onChange={() => setPlayerType('hitting')}
-                        checked={playerType === 'hitting'}
-                     />
-                     <span className='ml-3'>Hitting</span>
+            <div className='z-10 flex flex-col justify-evenly items-center h-full'>
+               <h1 className='font-bold text-3xl md:text-7xl text-center font-mono'>
+                  Ready to test your baseball knowledge?
+               </h1>
+
+               <div className='flex flex-col gap-5'>
+                  <p>Choose which category you would like to compare:</p>
+
+                  <div className='flex justify-evenly w-full'>
+                     <button
+                        className={`btn btn-lg ${playerType === 'pitching' && 'btn-primary'}`}
+                        onClick={() => setPlayerType('pitching')}
+                     >
+                        Pitching
+                     </button>
+                     <button
+                        className={`btn btn-lg ${playerType === 'hitting' && 'btn-primary'}`}
+                        onClick={() => setPlayerType('hitting')}
+                     >
+                        Hitting
+                     </button>
                   </div>
                </div>
-               <label className='input-group input-group-vertical'>
-                  <span>Stats to Compare</span>
-                  <select className='select select-bordered' onChange={(e) => setStatToCompare(e.currentTarget.value)}>
-                     {playerOptions}
-                  </select>
-               </label>
-            </div>
 
-            <Link to={`/game/${playerType}/${statToCompare}`} className='btn'>
-               Play Game!
-            </Link>
+               <div>
+                  <p className='mb-5'>
+                     Choose a <span className='text-secondary font-bold'>{playerType.toUpperCase()}</span> stat to
+                     compare:
+                  </p>
+                  <label className='input-group input-group-vertical input-group-lg'>
+                     <span>Stats to Compare</span>
+                     <select
+                        className='select select-bordered select-primary'
+                        onChange={(e) => setStatToCompare(e.currentTarget.value)}
+                     >
+                        {playerOptions}
+                     </select>
+                  </label>
+               </div>
+
+               <Link to={`/game/${playerType}/${statToCompare}`} className='btn btn-primary btn-lg'>
+                  Play Game!
+               </Link>
+            </div>
          </div>
       </PageLayout>
    )

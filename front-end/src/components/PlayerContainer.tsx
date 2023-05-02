@@ -10,7 +10,7 @@ export default function PlayerContainer(props: PlayerContainerProps) {
    return (
       <div
          {...rest}
-         className='w-full h-full flex items-center justify-center hover:w-[125%] transition-all cursor-pointer'
+         className='w-full h-full flex items-center justify-center md:hover:w-[125%] transition-all cursor-pointer'
       >
          <div>
             <h1 className='text-3xl'>{player.namefirstlast}</h1>
